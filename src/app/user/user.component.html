@@ -1,0 +1,24 @@
+<div style="width: calc(150px + 30vw);">
+    <div [class]="'statustext '+status_class">{{statusText}}</div>
+    <h2>Users Management App</h2>
+    <div class="users">
+        <div class="inp">
+        <input #inp type="text" placeholder="Add new user _____">
+        <button (click)="addNewUser(inp.value);inp.value='';">Add</button>
+    </div>
+    <div class="user-div">
+        <div *ngFor="let user of userData;let i=index;">
+            <span #txt [contentEditable]="isEditing[i]">{{user.firstName+" "+user.lastName}}</span>
+            <div>
+                <span *ngIf="!isEditing[i]" (click)="editUser(user.id,txt.innerText)"
+                    style="transform:rotateZ(90deg)">&#x270e;</span> <!--koi ek-->
+                <span *ngIf="isEditing[i]" (click)="editUser(user.id,txt.innerText)"> &#x2713;</span>
+                <span (click)="removeUser(user.id)"> &#x2715;</span>
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: 50px;opacity: .4;">
+        Md Ishtiyaque Ahmad <br>
+        NIT Patna
+    </div>
+</div>
